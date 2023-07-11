@@ -1,0 +1,40 @@
+import request from '@/utils/request'
+import { service } from '@/api/index'
+export function api_${model.underscoreName}_post(data) {
+  return request({
+    url: service + '${model.name}',
+    method: 'post',
+    data
+  })
+}
+
+export function api_${model.underscoreName}_put(data) {
+  return request({
+    url: service + '${model.name}',
+    method: 'put',
+    data
+  })
+}
+
+export function api_${model.underscoreName}_delete(id) {
+  return request({
+    url: service + '${model.name}/' + id,
+    method: 'delete'
+  })
+}
+
+export function api_${model.underscoreName}_get(id) {
+  return request({
+    url: service + '${model.name}/' + id,
+    method: 'get'
+  })
+}
+
+export function api_${model.underscoreName}_page(data) {
+  return request({
+    url: service+'${model.name}/page',
+    method: 'post',
+    data
+  })
+}
+

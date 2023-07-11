@@ -1,0 +1,94 @@
+﻿publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMG6ShT6dw+mV4V0WYcCoFjjBqxryA1cOq+9gGCIMndMJOYCkQrydlwgGmf2OZLYrZX0MeplvcL4oKvG2ojKzC0CAwEAAQ==
+spring:
+  #出现错误时, 直接抛出异常(便于异常统一处理，否则捕获不到404)
+  mvc:
+    throw-exception-if-no-handler-found: true
+  #不要为我们工程中的资源文件建立映射
+  resources:
+    add-mappings: false
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    lettuce:
+      shutdown-timeout: 3000       # 连接超时时间 单位 ms（毫秒）
+      pool:
+        max-idle: 8       # 连接池中的最大空闲连接，默认值也是8
+        min-idle: 0       # 连接池中的最小空闲连接，默认值也是0
+        max-active: 8     # 如果赋值为-1，则表示不限制；如果pool已经分配了maxActive个jedis实例，则此时pool的状态为exhausted(耗尽)。
+        max-wait: -1      # 等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时。如果超过等待时间，则直接抛出
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/leo_fly?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:123456}
+    druid:
+      connect-properties:
+        config.decrypt: true
+        config.decrypt.key: ${publickey} # 生成的公钥 publicKey
+      filter:
+        config:
+          enabled: true # 启动ConfigFilter
+      initial-size: 5 # 连接池初始化大小
+      min-idle: 10 # 最小空闲连接数
+      max-active: 20 # 最大连接数
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印mybatis sql语句
+mybatis-plus:
+  configuration:
+    # 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: 0 # 0为AUTO
+      logic-delete-value: "Y" # 逻辑已删除值(默认为 Y)
+      logic-not-delete-value: "N" # 逻辑未删除值(默认为 N)
+#配置日志
+logging:
+  #此处存放日志的路径
+  path:
+    config: classpath:config/logback-spring.xml
+  #指定不同目录下的日志的级别
+  level:
+    com.leo.fly: DEBUG
+
+
+#配置swagger
+swagger:
+  #生产环境禁用
+  enable: false
+#配置日志
+
+#true启动session校验，false关闭session校验
+session:
+  active: true
+  platform: SYS,NAP,IG2
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  hidePackages: com.leo.fly
+  local:
+    # 默认永久本地缓存
+    default:
+      type: caffeine
+      keyConvertor: fastjson
+  remote:
+    # 默认永久的远程缓存
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: kryo
+      valueDecoder: kryo
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+system:
+  whiteList:

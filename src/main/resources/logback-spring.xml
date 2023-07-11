@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<property name="LOG_PATH" value="/leo_fly/admin/logs" />
+	<property name="FILEINFO_LOG_PATTERN"
+		value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}  %clr(%-4.4line){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+	<property name="STDOUT_LOG_PATTERN"
+		value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}  %clr(%-4.4line){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+
+	<!-- 日志记录器，日期滚动记录 -->
+	<appender name="FILEINFO"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 正在记录的日志文件的路径及文件名 -->
+		<file>${LOG_PATH}/leo_fly.log</file>
+		<!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/bak/leo_fly-%d{yyyy-MM-dd}.%i.log.gz
+			</fileNamePattern>
+			<!-- 除按日志记录之外，还配置了日志文件不能超过100M，若超过100M，日志文件会以索引0开始， 命名日志文件，例如log-error-2013-12-21.0.log -->
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<!-- 追加方式记录日志 -->
+		<append>true</append>
+		<!-- 日志文件的格式 -->
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${FILEINFO_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender>
+	<appender name="REQRESAPPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/req_res.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/req_res-%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<!--encoder 默认配置为PatternLayoutEncoder -->
+		<encoder>
+			<pattern>${STDOUT_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender>
+	<!--输出到error -->
+	<appender name="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/leo_fly-error-%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level
+				%logger{36} - %msg%n</pattern>
+			<charset>utf-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印ERROR日志 -->
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<logger name="org.springframework" level="WARN" />
+	<logger name="org.hibernate" level="WARN" />
+	<logger name="req_res" level="INFO" additivity="false">
+		<appender-ref ref="REQRESAPPENDER" />
+	</logger>
+	<!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
+	<root level="INFO">
+		<appender-ref ref="FILEINFO" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR" />
+	</root>
+</configuration>

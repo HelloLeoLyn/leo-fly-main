@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+<div style="width: 790px">
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01lWgKbO1Uhwoo8VFNK_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_0"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            th:src="${target2}"
+            alt="图片"
+    />
+
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01XPX2Ov1Uhwp0mCrmi_!!2210530712550-0-cib.jpg"
+    />
+    <table>
+        <thead>
+        <tr>
+            <th>车型</th>
+            <th>年款</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${model}">
+            <td th:text="${item.model}">姓名</td>
+            <td th:text="${item.year}">年龄</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <img
+            src="https://cbu01.alicdn.com/img/ibank/O1CN019fkfcu1UhwoulS6Q0_!!2210530712550-0-cib.jpg"
+            style="display: block; width: 100%; height: auto"
+    />
+    <div th:each="img : ${images}">
+        <img
+                style="
+            display: block;
+            padding: 20px;
+            width: 750px;
+            height: 750px;
+            background-color: black;
+          "
+                th:src="${img}"
+                alt=""
+                usemap="#_sdmap_2"
+        />
+    </div>
+
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01YJx6ZQ1UhwooAiL5R_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_7"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01dXWOIU1UhwopkOD5i_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_8"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01txkFmc1UhwolQrtxf_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_9"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01Hj9YUA1UhwooAiGwu_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_10"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01DuqqSt1UhwolQtF7l_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_11"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01TXwNmy1Uhwos1BVLP_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_12"
+    />
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01o4GHyI1UhwooAhbNb_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+            alt=""
+            usemap="#_sdmap_13"
+    />
+    <!-- <img
+      style="display: block; width: 100%; height: auto"
+      src="https://cbu01.alicdn.com/img/ibank/O1CN0122gdbE1Uhwom77tBM_!!2210530712550-0-cib.jpg?__r__=1687242151475"
+      alt=""
+      usemap="#_sdmap_14"
+    /> -->
+</div>
+</body>
+</html>

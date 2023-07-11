@@ -1,0 +1,9 @@
+package com.leo.fly.db.${model.name}.params;
+
+import com.leo.fly.web.form.BaseQueryForm;
+import lombok.Data;
+
+@Data
+public class ${model.label}QueryForm extends BaseQueryForm<${model.label}QueryParam>{
+    ${model.queryForm}
+}

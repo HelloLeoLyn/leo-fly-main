@@ -1,0 +1,26 @@
+package com.leo.fly.db.${model.name}.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.leo.fly.common.util.ObjectUtils;
+import com.leo.fly.common.util.StringUtils;
+import com.leo.fly.db.${model.name}.entity.${model.label};
+import com.leo.fly.db.${model.name}.mapper.${model.label}Mapper;
+import com.leo.fly.db.${model.name}.params.${model.label}QueryParam;
+import com.leo.fly.db.${model.name}.service.${model.label}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class ${model.label}ServiceImpl extends ServiceImpl<${model.label}Mapper, ${model.label}> implements ${model.label}Service {
+    @Override
+    public Page<${model.label}> page(Page page, ${model.label}QueryParam params) {
+        LambdaQueryWrapper<${model.label}> queryWrapper = new LambdaQueryWrapper<>();
+        ${model.queryWrapper}
+        return this.page(page, queryWrapper);
+    }
+}

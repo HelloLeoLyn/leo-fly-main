@@ -1,0 +1,20 @@
+package com.leo.fly.db.${model.name}.service;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.leo.fly.db.${model.name}.entity.${model.label};
+import com.leo.fly.db.${model.name}.params.${model.label}QueryParam;
+
+import java.util.List;
+
+/**
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author leo.lyn
+ * @since 2021-12-01
+ */
+public interface ${model.label}Service extends IService<${model.label}> {
+    Page<${model.label}> page(Page page, ${model.label}QueryParam toParam);
+}

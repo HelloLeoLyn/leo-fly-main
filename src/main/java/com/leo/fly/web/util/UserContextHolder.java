@@ -1,0 +1,124 @@
+package com.leo.fly.web.util;
+
+import com.google.common.collect.Maps;
+import com.leo.fly.web.form.BaseHeaderProperties;
+
+import java.util.Map;
+import java.util.Optional;
+
+/**
+ * 用户上下文
+ */
+public class UserContextHolder {
+
+    private ThreadLocal<Map<String, String>> threadLocal;
+
+    private UserContextHolder() {
+        this.threadLocal = new ThreadLocal<>();
+    }
+
+    /**
+     * 创建实例
+     *
+     * @return
+     */
+    public static UserContextHolder getInstance() {
+        return SingletonHolder.sInstance;
+    }
+
+    /**
+     * 静态内部类单例模式
+     * 单例初使化
+     */
+    private static class SingletonHolder {
+        private static final UserContextHolder sInstance = new UserContextHolder();
+    }
+
+    /**
+     * 用户上下文中放入信息
+     *
+     * @param map
+     */
+    public void setContext(Map<String, String> map) {
+        threadLocal.set(map);
+    }
+
+    /**
+     * 获取上下文中的信息
+     *
+     * @return
+     */
+    public Map<String, String> getContext() {
+        return threadLocal.get();
+    }
+
+
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getUserId() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get(BaseHeaderProperties.X_USER);
+    }
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getSessionId() {
+        return getToken();
+    }
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getToken() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get(BaseHeaderProperties.X_TOKEN);
+    }
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getTransCode() {
+        Map<String, String> map = Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap());
+        return map.get("trans_code");
+    }
+
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getSign() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get(BaseHeaderProperties.X_SLF);
+    }
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getPlatform() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get(BaseHeaderProperties.X_SYSTEM);
+    }
+    /**
+     * 获取上下文中的用户名
+     *
+     * @return
+     */
+    public String getTime() {
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get(BaseHeaderProperties.X_SEQUENCE);
+    }
+
+
+    /**
+     * 清空上下文
+     */
+    public void clear() {
+        threadLocal.remove();
+    }
+
+
+}

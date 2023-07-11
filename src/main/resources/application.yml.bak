@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  #  jackson:
+  #    time-zone: GMT+8
+  #    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: dev
+  #  sequence:
+  #    prefix: admin_
+  output:
+    ansi:
+      enabled: always
+  #暴露资源
+  sources:
+    static-locations: classpath:/static/,file:${file.photo.dir}
+  mvc:
+    static-path-pattern: /image/**
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  #文件上传最大限制
+  servlet.multipart.max-file-size: 100MB
+  servlet.multipart.max-request-size: 1000MB
+
+
+# 在配置文件中指定文件上传位置
+file:
+  photo:
+    dir: G:/warning/e-shop/image/
+
+# 在配置文件中指定系统邮箱
+email:
+  sys:
+    account: 2864672058@qq.com
+    password: kdfqkwloxdigdffe
+    smtp: smtp.qq.com
+    protocol: smtp
+
+

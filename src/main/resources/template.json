@@ -1,0 +1,65 @@
+{
+  "html": {
+    "htmlTag": "template",
+    "children": [
+      {
+        "htmlTag": "b-container",
+        "children": [
+          {
+            "htmlTag": "div",
+            "attributes": {
+              "keys": [
+                "class"
+              ],
+              "values": [
+                "dialog"
+              ]
+            },
+            "children": [
+              {
+                "htmlTag": "el-dialog",
+                "attributes": {
+                  "keys": [
+                    ":visible.sync",
+                    ":title"
+                  ],
+                  "values": [
+                    "dialog.visible",
+                    "dialog.title"
+                  ]
+                },
+                "children": [
+                  {
+                    "htmlTag": "el-form",
+                    "attributes": {
+                      "keys": [
+                        "v-model",
+                        ":rules"
+                      ],
+                      "values": [
+                        "form",
+                        "rules"
+                      ]
+                    },
+                    "children": [
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "js": {
+    "data": {
+      "dialog": {
+        "create": {
+          "text": "新增",
+          "visible": false
+        }
+      }
+    }
+  }
+}

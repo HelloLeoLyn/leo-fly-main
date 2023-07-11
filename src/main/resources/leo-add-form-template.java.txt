@@ -1,0 +1,10 @@
+package com.leo.fly.db.${model.name}.params;
+
+import com.leo.fly.db.${model.name}.entity.${model.label};
+import com.leo.fly.web.form.BaseForm;
+import lombok.Data;
+import java.math.BigDecimal;
+@Data
+public class ${model.label}AddForm extends BaseForm<${model.label}>{
+	    ${model.addForm}
+}
