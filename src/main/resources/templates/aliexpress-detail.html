@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="fontFamily:math"></h1><h1>Notice</h1>
+    <p>&nbsp;&nbsp;Friends, welcome, before placing an order, please check carefully whether the product you need to buy is correct, If you don't know if the product is suitable for your car, you can send the VIN number of your car to customer service for inspection. </p>
+    <p> &nbsp;&nbsp;If you have any questions about the product, or if you want to order in large quantities, you can contact me and I will give you the best price. Email: 541124712@qq.com wechat:+8618507568775.</p></div>
+<div><h1>Features</h1>
+    <p>Revitalize Your Vehicle: Find the Perfect Auto Components</p>
+    <div style="   display: flex;  grid-column: auto;">
+        <div style=" border: 1px solid ;  min-width: 0; padding: 10px;height: 280px;width: 25%;text-align: center;">
+            <img src="https://ae01.alicdn.com/kf/S8b910b280e9a4e01aea2c173b7c98a0bZ.png" alt=""/>
+            <p>Highest Standards for Safety and Reliability</p>
+        </div>
+        <div style=" border: 1px solid;
+    min-width: 0;
+    padding: 10px;height: 280px;width: 25%;text-align: center;">
+            <img src="https://ae01.alicdn.com/kf/Sb0cef13e329b4b5a89754b8a97b3a3efR.png" alt=""/>
+            <p>
+                Long-Lasting Brake Pads that Endure the Toughest Driving Conditions
+            </p>
+        </div>
+        <div style=" border: 1px solid ;
+    min-width: 0;
+    padding: 10px;height: 280px;width: 25%;text-align: center;">
+            <img src="https://ae01.alicdn.com/kf/S417cb9d3f9e5459bb10fe728e1045833Q.png" alt=""/>
+            <p>
+                Superior Heat Dissipation: Our Brake Pads Maintain Optimal Performance under Intense
+                Braking!
+            </p>
+        </div>
+        <div style=" border: 1px solid ;
+    min-width: 0;
+    padding: 10px;height: 280px;width: 25%;text-align: center;">
+            <img src="https://ae01.alicdn.com/kf/S3f6976653db6442da840d29c838870e7B.png" slate-data-type="image">
+            <p>Say Goodbye to Squeaky and Worn-out Pads</p>
+        </div>
+    </div>
+</div>
+<h1>Product Detail</h1>
+<table>
+    <tbody>
+    <tr th:if="${productDetail != null}" th:each="productDetail:${productDetail}">
+        <td style="width:400px;background-color:#dbd3d3;border-bottom: 1px solid;" th:text="${productDetail.key}"></td>
+        <td style="width:500px;background-color:#f1f1f1;border-bottom: 1px solid;" th:text="${productDetail.value}"></td>
+    </tr>
+    </tbody>
+</table>
+<div><h1>OEM:</h1>
+    <table>
+        <tr th:each="item, itemIndex : ${codes}" th:if="${itemIndex.index % 4 == 0}">
+            <td th:text="${items[itemIndex.index]}"></td>
+            <td th:text="${items[itemIndex.index + 1]}" th:if="${itemIndex.index + 1 < #lists.size(items)}"></td>
+            <td th:text="${items[itemIndex.index + 2]}" th:if="${itemIndex.index + 2 < #lists.size(items)}"></td>
+            <td th:text="${items[itemIndex.index + 3]}" th:if="${itemIndex.index + 3 < #lists.size(items)}"></td>
+        </tr>
+    </table>
+</div>
+<div><h1>Car Fitments</h1>
+    <table>
+        <thead style="text-align: left;">
+        <tr>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Engine</th>
+            <th>Displacement</th>
+            <th>Power</th>
+            <th>Type</th>
+        </tr>
+        </thead>
+        <tr th:each="item : ${models}">
+            <td th:text="item.model">奔驰 (进口) C-CLASS (W205) AMG C 43 4-matic (205.064)</td>
+            <td th:text="item.year">2016-2018</td>
+            <td th:text="item.engine">M 276.823</td>
+            <td th:text="item.displacement"></td>
+            <td th:text="item.power">270</td>
+            <td th:text="item.type">Saloon</td>
+        </tr>
+    </table>
+</div>
+<!--<img th:src="${detailCoverUrl}">-->
+
+<div id="Packing & Delivery" class="section">
+    <h1>Packing & Delivery</h1>
+<!--    <div style="display: flex;">-->
+<!--        <div style="width:50%">-->
+<!--            <img th:src="@{packingCover}" alt="">-->
+<!--        </div>-->
+<!--        <div style="width: 50%;">-->
+<!--            <p>packageSize:0003571300</p>-->
+<!--            <p>weight:5.000</p>-->
+<!--        </div>-->
+<!--    </div>-->
+    <img th:src="@{packingBoxUrl}" alt="" style="width: 100%;">
+    <img th:src="@{packingSizeUrl}" style="width: 100%;"></div>
+<div id="Company" class="section">
+    <h1>Company</h1>
+    <div style="padding:20px 0;">
+        Guangzhou JXT(MDTZ) is a young upcoming company with excellent network to major manufacturers in China operating in the field of auto parts.
+
+        We are constantly looking for new developments and innovations of online shopping for the purpose of providing you a unique experience while shopping with us.
+
+        Why buy from us ?
+
+        1. JXT established Sales office & Warehouse in Guangzhou to provide better service for clients.
+
+        2. We stock 50,000+ different parts in China . Parts deliver to Guangzhou/Shenzhen Port within 7 days after order confirmed. You are benefit from China factory direct price and
+        immediate delivery service.
+
+        3. NO MOQ requested ! No need to buy big volume in one shipment. JXT stands for the highest standards at competitive market prices.
+
+        We are currently looking for distributors wordwide if you are interested, please add WhatsApp: +86 185 0756 8775 or WeChat: +86 185 0756 8775; please email us 541124712@qq.com
+    </div>
+    <img src="https://ae01.alicdn.com/kf/S95d3f25cb00d415c991a5031280f38505.png" alt="" style="width:100%">
+</div>
+<div id="Factory" class="section"></div>
+<h1>Factory</h1></h1>
+<img src="https://ae01.alicdn.com/kf/S1664da71095c4341b2a6e24924e6e85f5.png" alt="" style="width:100%"><img
+        src="https://ae01.alicdn.com/kf/Sa537edb987d3409d922525e6992040dfJ.png" alt="" style="width:100%"><img
+        src="https://ae01.alicdn.com/kf/S95cc1031bf8843c39dd468efbab787eef.png" alt="" style="width:100%"></div>
+<div id="Cert" class="section"><h1>Cert</h1><img src="https://ae01.alicdn.com/kf/Sfc6c53c7858b47618f3e1f8deda63b0cF.png"
+                                                 alt="" style="width:100%"><img
+        src="https://ae01.alicdn.com/kf/Se6fb480ff2944e8f9423b3a6b243564dM.png" alt="" style="width:100%"><img
+        src="https://ae01.alicdn.com/kf/S1af74204154c45ff96951dd8f6ab53963.png" alt="" style="width:100%"></div>
+</body>
+</html>

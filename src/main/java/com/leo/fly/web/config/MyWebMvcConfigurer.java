@@ -3,10 +3,10 @@ package com.leo.fly.web.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
+//@EnableSwagger2
 public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     @Value("${file.photo.dir}")
