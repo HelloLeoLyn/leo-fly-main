@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -71,11 +72,13 @@ public class SysMenuController {
 
     @GetMapping("/userId/{userId}")
     public JsonResult getByUserId(@PathVariable Long userId){
-        List<Long> idList = roleMenuMapper.listMenuIdByUserId(userId);
-        if(ObjectUtils.isEmpty(idList)){
+        List<SysMenuVo> menuVoList = roleMenuMapper.listMenuIdByUserId(userId);
+        if(ObjectUtils.isEmpty(menuVoList)){
             return JsonResult.success(null);
         }
-        List<SysMenuVo> menuVoList = sysMenuService.listByIds(idList).stream().map(a -> new SysMenuVo(a)).collect(Collectors.toList());
+        Set<Long> idList = menuVoList.stream().map(m->m.getId()).collect(Collectors.toSet());
+        idList.addAll(menuVoList.stream().map(m->m.getParentId()).collect(Collectors.toSet()));
+        menuVoList = sysMenuService.listByIds(idList).stream().map(a -> new SysMenuVo(a)).collect(Collectors.toList());
         Map<Long, List<SysMenuVo>> collect = menuVoList.stream().collect(Collectors.groupingBy(a -> a.getParentId()));
         List<SysMenuVo> result = collect.get(0L);
         result.forEach(one-> {
