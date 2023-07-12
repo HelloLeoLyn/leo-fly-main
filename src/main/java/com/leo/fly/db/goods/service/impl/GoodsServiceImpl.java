@@ -36,10 +36,6 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 
 	@Override
 	public Object templates(GoodsTemplateParams params) {
-
-		return generateDescription(params.getTarget2(),params.getImages(),params.getModels());
-	}
-	private String generateDescription(String target2, List<String> images, JSONArray model){
 		TemplateEngine templateEngine = new TemplateEngine();
 		// 创建模板解析器
 		FileTemplateResolver templateResolver = new FileTemplateResolver();
@@ -49,13 +45,23 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 		templateEngine.setTemplateResolver(templateResolver);
 
 		Context context = new Context();
-		context.setVariable("images", images);
-		context.setVariable("target2", target2);
-		context.setVariable("model", model);
-		// 使用模板引擎生成HTML
-		String html = templateEngine.process("detail", context);
-		System.out.println(html);
+		String html = null;
+		if(params.getWebsite().equals("alibaba")){
+			context.setVariable("images", params.getImages());
+			context.setVariable("detailCoverUrl", params.getDetailCoverUrl());
+			context.setVariable("models", params.getModels());
+			// 使用模板引擎生成HTML
+			html = templateEngine.process("detail", context);
+		}else if(params.getWebsite().equals("aliexpress")){
+			context.setVariable("images", params.getImages());
+			context.setVariable("detailCoverUrl", params.getDetailCoverUrl());
+			context.setVariable("models", params.getModels());
+			context.setVariable("productDetail", params.getModels());
+			// 使用模板引擎生成HTML
+			html = templateEngine.process("aliexpress-detail", context);
+		}
 		return html;
 	}
+
 
 }

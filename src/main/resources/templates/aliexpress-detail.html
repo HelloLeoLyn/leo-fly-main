@@ -94,8 +94,8 @@
 <!--            <p>weight:5.000</p>-->
 <!--        </div>-->
 <!--    </div>-->
-    <img th:src="@{packingBoxUrl}" alt="" style="width: 100%;">
-    <img th:src="@{packingSizeUrl}" style="width: 100%;"></div>
+    <img th:src="${packingBoxUrl}" alt="" style="width: 100%;">
+    <img th:if="${packingSizeUrl != null}" th:src="${packingSizeUrl}" style="width: 100%;"></div>
 <div id="Company" class="section">
     <h1>Company</h1>
     <div style="padding:20px 0;">
@@ -121,9 +121,12 @@
 <img src="https://ae01.alicdn.com/kf/S1664da71095c4341b2a6e24924e6e85f5.png" alt="" style="width:100%"><img
         src="https://ae01.alicdn.com/kf/Sa537edb987d3409d922525e6992040dfJ.png" alt="" style="width:100%"><img
         src="https://ae01.alicdn.com/kf/S95cc1031bf8843c39dd468efbab787eef.png" alt="" style="width:100%"></div>
-<div id="Cert" class="section"><h1>Cert</h1><img src="https://ae01.alicdn.com/kf/Sfc6c53c7858b47618f3e1f8deda63b0cF.png"
-                                                 alt="" style="width:100%"><img
-        src="https://ae01.alicdn.com/kf/Se6fb480ff2944e8f9423b3a6b243564dM.png" alt="" style="width:100%"><img
-        src="https://ae01.alicdn.com/kf/S1af74204154c45ff96951dd8f6ab53963.png" alt="" style="width:100%"></div>
+<div id="Cert" class="section"><h1>Cert</h1>
+    <img src="https://ae01.alicdn.com/kf/Sfc6c53c7858b47618f3e1f8deda63b0cF.png" alt="" style="width:100%">
+    <img
+        src="https://ae01.alicdn.com/kf/Se6fb480ff2944e8f9423b3a6b243564dM.png" alt="" style="width:100%">
+    <img
+        src="https://ae01.alicdn.com/kf/S1af74204154c45ff96951dd8f6ab53963.png" alt="" style="width:100%">
+</div>
 </body>
 </html>

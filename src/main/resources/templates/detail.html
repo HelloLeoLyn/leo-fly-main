@@ -16,7 +16,7 @@
     />
     <img
             style="display: block; width: 100%; height: auto"
-            th:src="${target2}"
+            th:src="${detailCoverUrl}"
             alt="图片"
     />
 
@@ -32,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${model}">
+        <tr th:each="item : ${models}">
             <td th:text="${item.model}">姓名</td>
             <td th:text="${item.year}">年龄</td>
         </tr>
