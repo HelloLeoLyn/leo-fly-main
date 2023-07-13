@@ -52,5 +52,5 @@ public class Goods extends BasePo {
 	/**
 	 * 参数
 	 */
-	private String attributes;
+	private String json;
 }
