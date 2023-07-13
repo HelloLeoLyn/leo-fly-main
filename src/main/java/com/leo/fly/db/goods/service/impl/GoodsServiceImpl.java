@@ -1,6 +1,5 @@
 package com.leo.fly.db.goods.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -16,8 +15,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
-
-import java.util.List;
 
 @Service
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService {
@@ -59,6 +56,13 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 			context.setVariable("productDetail", params.getModels());
 			// 使用模板引擎生成HTML
 			html = templateEngine.process("aliexpress-detail", context);
+		}else if(params.getWebsite().equals("amazon")){
+//			context.setVariable("images", params.getImages());
+//			context.setVariable("detailCoverUrl", params.getDetailCoverUrl());
+//			context.setVariable("models", params.getModels());
+//			context.setVariable("productDetail", params.getModels());
+			// 使用模板引擎生成HTML
+			html = templateEngine.process("amazon-listing", context);
 		}
 		return html;
 	}

@@ -49,4 +49,8 @@ public class Goods extends BasePo {
 	 * 第三方id
 	 */
 	private String thirdPartId;
+	/**
+	 * 参数
+	 */
+	private String attributes;
 }

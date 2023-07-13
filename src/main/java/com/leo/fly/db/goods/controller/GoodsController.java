@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
@@ -20,6 +21,12 @@ public class GoodsController {
 		//log.debug("name:{}", addForm);
 		Goods goods = addForm.toPo(Goods.class);
 		return JsonResult.success(goodsService.save(goods));
+	}
+
+	@PostMapping(value="/batch")
+	public JsonResult saveBatch(@RequestBody List<Goods> goodsList) {
+		//log.debug("name:{}", addForm);
+		return JsonResult.success(goodsService.saveBatch(goodsList));
 	}
 	@PutMapping()
 	public JsonResult update( @Valid @RequestBody GoodsUpdateForm updateForm) {
