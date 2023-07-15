@@ -1,8 +1,12 @@
 package com.leo.fly.db.goods.entity;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.leo.fly.web.po.BasePo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +18,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("leo_goods")
+@TableName(value = "leo_goods",autoResultMap = true)
 public class Goods extends BasePo {
 	/**
 	* 商品id
@@ -36,7 +40,8 @@ public class Goods extends BasePo {
 	/**
 	* 图片
 	*/
-	private String images;
+	@TableField(value="images",typeHandler = FastjsonTypeHandler.class)
+	private JSONArray images;
 	/**
 	* 主图
 	*/
@@ -52,5 +57,6 @@ public class Goods extends BasePo {
 	/**
 	 * 参数
 	 */
-	private String json;
+	@TableField(value="json",typeHandler = FastjsonTypeHandler.class)
+	private JSONObject json;
 }
