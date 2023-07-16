@@ -1,5 +1,6 @@
 package com.leo.fly.db.goods.entity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -39,7 +40,8 @@ public class Goods extends BasePo {
 	/**
 	* 图片
 	*/
-	private String images;
+	@TableField(value="images",typeHandler = FastjsonTypeHandler.class)
+	private JSONArray images;
 	/**
 	* 主图
 	*/
