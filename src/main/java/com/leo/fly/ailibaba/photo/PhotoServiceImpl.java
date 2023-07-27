@@ -62,6 +62,7 @@ public class PhotoServiceImpl implements PhotoService {
     public List<PhotoBankPhotoResult> sendImagesToAlibaba(List<Image>images, Long albumID) {
         List<PhotoBankPhotoResult> results = new ArrayList<>();
         images.forEach((image) -> {
+            image = imageService.getById(image.getId());
             if (StringUtils.isNotBlank(image.getUrl())) {
                 return;
             }

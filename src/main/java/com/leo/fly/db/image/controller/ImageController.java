@@ -80,7 +80,11 @@ public class ImageController {
         Collection<File> files = FileUtils.listFiles(new File(imageBaseDir+"TEMP/100APPLE"),null,true);
         return JsonResult.success(files);
     }
-
+    @GetMapping(value = "/{id}")
+    public JsonResult getImageById(@PathVariable Long id){
+        Image image = imageService.getById(id);
+        return JsonResult.success(image);
+    }
     @PostMapping(value = "/fail")
     public JsonResult fail(@RequestBody List<String> filepath) throws IOException {
         File dir = new File(imageBaseDir+"TEMP/fail");
