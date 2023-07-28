@@ -35,10 +35,10 @@ public class GenerateGoodsImage {
         list.add(param.getOpt());
         list.add(param.getProductId());
         list.add(param.getIsRmbg()?"1":"0");
-        list.add(imageBaseDir + param.getProductId()+"/" + param.getProductId()+"/temp.png");
+        list.add(imageBaseDir + param.getProductId()+"/temp.png");
         JSONObject object = null;
         try {
-//            System.out.println(JSONObject.toJSONString(list));
+            System.out.println(JSONObject.toJSONString(list));
             Process proc = Runtime.getRuntime().exec(list.toArray(new String[list.size()]));// 执行py文件
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line;

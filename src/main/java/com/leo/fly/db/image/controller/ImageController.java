@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -59,7 +60,10 @@ public class ImageController {
 
     @GetMapping(value="/code/{code}")
     public JsonResult getByCode(@PathVariable String code ) {
-        return JsonResult.success(imageService.getByCode(code,1));
+        List<Integer> status = new ArrayList<>();
+        status.add(1);
+        status.add(2);
+        return JsonResult.success(imageService.getByCode(code,status));
     }
 
     @DeleteMapping(value = "/{id}")

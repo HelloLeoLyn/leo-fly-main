@@ -3,46 +3,39 @@ package com.leo.fly.db.product.alibaba.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.ocean.rawsdk.ApiExecutor;
-import com.alibaba.ocean.rawsdk.client.APIId;
 import com.alibaba.ocean.rawsdk.common.SDKResult;
-import com.alibaba.product.param.AlibabaProductProductImageInfo;
 import com.alibaba.product.param.AlibabaProductProductInfo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.leo.fly.ailibaba.common.AccessToken;
 import com.leo.fly.ailibaba.common.SingletonAccessToken;
-import com.leo.fly.ailibaba.photo.PhotoBankParams;
-import com.leo.fly.ailibaba.photo.PhotoBankPhotoResult;
 import com.leo.fly.ailibaba.photo.PhotoService;
 import com.leo.fly.ailibaba.product.*;
 import com.leo.fly.common.enums.ErrorCodeEnum;
 import com.leo.fly.common.exception.ComException;
 import com.leo.fly.common.util.ObjectUtils;
 import com.leo.fly.common.util.StringUtils;
-import com.leo.fly.db.image.entity.Image;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.db.product.alibaba.entity.ProductAlibaba;
 import com.leo.fly.db.product.alibaba.mapper.ProductAlibabaMapper;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaAddForm;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaQueryParam;
 import com.leo.fly.db.product.alibaba.service.ProductAlibabaService;
-import com.leo.fly.db.product.entity.Product;
 import com.leo.fly.db.product.param.ProductQueryForm;
 import com.leo.fly.db.product.param.ProductRePostForm;
 import com.leo.fly.db.product.service.ProductService;
 import com.leo.fly.db.property.service.PropertyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -127,7 +120,7 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
                 productAlibaba.setStatus("上传失败");
                 this.updateById(productAlibaba);
                 log.info("发送1688失败:" + result.getErrorMsg());
-                throw new ComException(ErrorCodeEnum.E_1688_PRODUCT_ADD);
+                throw new ComException(ErrorCodeEnum.E_1688_PRODUCT_ADD, result.getErrorMsg());
             } else {
                 productAlibaba.setStatus("上传成功");
                 productAlibaba.setProductID(result.getProductID());

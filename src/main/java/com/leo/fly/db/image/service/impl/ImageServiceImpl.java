@@ -41,11 +41,11 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> implements
     }
 
     @Override
-    public List<Image> getByCode(String code, Integer status) {
+    public List<Image> getByCode(String code, List<Integer> status) {
         LambdaQueryWrapper<Image> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Image::getCode, code);
         if(ObjectUtils.isNotEmpty(status)){
-            queryWrapper.eq(Image::getStatus,status);
+            queryWrapper.in(Image::getStatus,status);
         }
         List<Image> list = list(queryWrapper);
         list.forEach(image -> setPixel(image));

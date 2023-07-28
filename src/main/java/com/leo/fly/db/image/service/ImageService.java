@@ -19,7 +19,7 @@ public interface ImageService extends IService<Image> {
 
     List<Image> getByCode(String code);
 
-    List<Image> getByCode(String code, Integer status);
+    List<Image> getByCode(String code, List<Integer> status);
 
     List<Number> getIdsByCode(String code);
 

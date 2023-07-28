@@ -1,7 +1,6 @@
 package com.leo.fly.db.product.components;
 
 import com.leo.fly.common.util.BeanUtils;
-import com.leo.fly.common.util.ObjectUtils;
 import com.leo.fly.db.image.entity.Image;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.db.product.entity.Product;
@@ -12,6 +11,7 @@ import com.leo.fly.db.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -29,7 +29,10 @@ public class ProductMoreComponent {
         ProductVo vo = new ProductVo();
         BeanUtils.copyProperties(product,vo);
         vo.setJsonList(jsonList);
-        List<Image> images = imageService.getByCode(product.getId()+"",1);
+        List<Integer> status = new ArrayList<>();
+        status.add(1);
+        status.add(2);
+        List<Image> images = imageService.getByCode(product.getId()+"",status);
         vo.setImages(images);
         return vo;
     }
