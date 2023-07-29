@@ -25,7 +25,6 @@ public class GenerateGoodsImage {
 
     public JSONObject execute(PythonImageGoodsParams param) {
         List<String> list = new ArrayList<>();
-//        String[] list = new String[8];
         list.add("python");
         list.add(pythonPath+"generateGoodsImages.py");
         list.add(param.getCoverPath());

@@ -5,6 +5,7 @@ import com.leo.fly.common.entity.vo.JsonResult;
 import com.leo.fly.db.image.entity.Image;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.python.components.GenerateGoodsImage;
+import com.leo.fly.python.components.ImageCutComponent;
 import com.leo.fly.python.components.ImageStandardPsComponent;
 import com.leo.fly.python.params.PythonImageCutParams;
 import com.leo.fly.python.params.PythonImageGoodsParams;
@@ -25,6 +26,8 @@ import java.io.InputStreamReader;
 public class PythonImageController {
     @Autowired
     ImageStandardPsComponent imageStandardPsComponent;
+    @Autowired
+    ImageCutComponent imageCutComponent;
 
     @Autowired
     GenerateGoodsImage generateGoodsImage;
@@ -38,6 +41,11 @@ public class PythonImageController {
         return JsonResult.success();
     }
 
+    @PostMapping("/cut")
+    public JsonResult stander(@RequestBody PythonImageCutParams imageParams) {
+        imageCutComponent.execute(imageParams);
+        return JsonResult.success();
+    }
 
     @PostMapping("/goods")
     public JsonResult goods(@RequestBody PythonImageGoodsParams params) {
