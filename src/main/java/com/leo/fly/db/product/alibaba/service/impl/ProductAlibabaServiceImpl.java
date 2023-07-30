@@ -16,6 +16,8 @@ import com.leo.fly.common.enums.ErrorCodeEnum;
 import com.leo.fly.common.exception.ComException;
 import com.leo.fly.common.util.ObjectUtils;
 import com.leo.fly.common.util.StringUtils;
+import com.leo.fly.db.goods.entity.Goods;
+import com.leo.fly.db.goods.service.GoodsService;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.db.product.alibaba.entity.ProductAlibaba;
 import com.leo.fly.db.product.alibaba.mapper.ProductAlibabaMapper;
@@ -49,7 +51,8 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
     PropertyService propertyService;
     @Autowired
     ImageService imageService;
-
+    @Autowired
+    GoodsService goodsService;
 
     @Override
     public Page<ProductAlibaba> page(Page page, ProductAlibabaQueryParam params) {
@@ -88,6 +91,8 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
     @Override
     public void add(ProductAlibaba productAlibaba) {
         this.sendTo1688(productAlibaba);
+        Goods goods = goodsService.getById(productAlibaba.getId());
+        goodsService.updateById(goods);
     }
 
     private void sendTo1688(ProductAlibaba productAlibaba) {

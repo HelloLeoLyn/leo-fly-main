@@ -8,36 +8,7 @@
 
 <body>
 <div style="width: 790px">
-    <img
-            style="display: block; width: 100%; height: auto"
-            src="https://cbu01.alicdn.com/img/ibank/O1CN01lWgKbO1Uhwoo8VFNK_!!2210530712550-0-cib.jpg?__r__=1687242151475"
-            alt=""
-            usemap="#_sdmap_0"
-    />
-    <img
-            style="display: block; width: 100%; height: auto"
-            th:src="${detailCoverUrl}"
-            alt="图片"
-    />
 
-    <img
-            style="display: block; width: 100%; height: auto"
-            src="https://cbu01.alicdn.com/img/ibank/O1CN01XPX2Ov1Uhwp0mCrmi_!!2210530712550-0-cib.jpg"
-    />
-    <table>
-        <thead>
-        <tr>
-            <th>车型</th>
-            <th>年款</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item : ${models}">
-            <td th:text="${item.model}">姓名</td>
-            <td th:text="${item.year}">年龄</td>
-        </tr>
-        </tbody>
-    </table>
 
     <img
             src="https://cbu01.alicdn.com/img/ibank/O1CN019fkfcu1UhwoulS6Q0_!!2210530712550-0-cib.jpg"
@@ -57,19 +28,25 @@
                 usemap="#_sdmap_2"
         />
     </div>
-
+    <img
+            style="display: block; width: 100%; height: auto"
+            src="https://cbu01.alicdn.com/img/ibank/O1CN01XPX2Ov1Uhwp0mCrmi_!!2210530712550-0-cib.jpg"
+    />
+    <table style="text-align: center">
+        <tbody>
+        <tr th:each="item : ${models}">
+            <td th:text="${item.model}">姓名</td>
+            <td th:text="${item.year}">年龄</td>
+        </tr>
+        </tbody>
+    </table>
     <img
             style="display: block; width: 100%; height: auto"
             src="https://cbu01.alicdn.com/img/ibank/O1CN01YJx6ZQ1UhwooAiL5R_!!2210530712550-0-cib.jpg?__r__=1687242151475"
             alt=""
             usemap="#_sdmap_7"
     />
-    <img
-            style="display: block; width: 100%; height: auto"
-            src="https://cbu01.alicdn.com/img/ibank/O1CN01dXWOIU1UhwopkOD5i_!!2210530712550-0-cib.jpg?__r__=1687242151475"
-            alt=""
-            usemap="#_sdmap_8"
-    />
+
     <img
             style="display: block; width: 100%; height: auto"
             src="https://cbu01.alicdn.com/img/ibank/O1CN01txkFmc1UhwolQrtxf_!!2210530712550-0-cib.jpg?__r__=1687242151475"
@@ -100,12 +77,6 @@
             alt=""
             usemap="#_sdmap_13"
     />
-    <!-- <img
-      style="display: block; width: 100%; height: auto"
-      src="https://cbu01.alicdn.com/img/ibank/O1CN0122gdbE1Uhwom77tBM_!!2210530712550-0-cib.jpg?__r__=1687242151475"
-      alt=""
-      usemap="#_sdmap_14"
-    /> -->
 </div>
 </body>
 </html>

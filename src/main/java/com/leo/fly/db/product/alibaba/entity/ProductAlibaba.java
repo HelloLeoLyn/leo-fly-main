@@ -23,7 +23,6 @@ import java.util.List;
 public class ProductAlibaba extends BasePoNvl {
 	@TableId(value = "id",type = IdType.AUTO)
 	private Long id;
-	
 	@TableField(value = "productID" )
 	private Long productID;
 	@TableField(value = "localProductId" )

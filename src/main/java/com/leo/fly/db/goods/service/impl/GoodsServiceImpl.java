@@ -45,7 +45,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
 		String html = null;
 		if(params.getWebsite().equals("alibaba")){
 			context.setVariable("images", params.getImages());
-			context.setVariable("detailCoverUrl", params.getDetailCoverUrl());
+//			context.setVariable("detailCoverUrl", params.getDetailCoverUrl());
 			context.setVariable("models", params.getModels());
 			// 使用模板引擎生成HTML
 			html = templateEngine.process("detail", context);

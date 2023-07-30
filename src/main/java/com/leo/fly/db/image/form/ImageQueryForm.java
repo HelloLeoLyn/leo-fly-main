@@ -3,10 +3,12 @@ package com.leo.fly.db.image.form;
 import com.leo.fly.web.form.BaseQueryForm;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ImageQueryForm extends BaseQueryForm<ImageQueryParam> {
 
-    private Long idList;
+    private List<Long> idList;
 
     private String type;
 
