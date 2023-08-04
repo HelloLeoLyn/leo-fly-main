@@ -29,8 +29,7 @@ public class GoodsController {
 		return JsonResult.success(goodsService.saveBatch(goodsList));
 	}
 	@PutMapping()
-	public JsonResult update( @Valid @RequestBody GoodsUpdateForm updateForm) {
-		Goods goods = updateForm.toPo(Goods.class);
+	public JsonResult update( @Valid @RequestBody Goods goods) {
 		return JsonResult.success(goodsService.updateById(goods));
 	}
 	@GetMapping(value = "/{id}")
