@@ -136,25 +136,6 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
             throw new ComException(ErrorCodeEnum.E_AUTHORIZED_1688);
         }
     }
-    private String generateDescription(String target2, List<String> images, JSONArray model){
-        TemplateEngine templateEngine = new TemplateEngine();
-        // 创建模板解析器
-        FileTemplateResolver templateResolver = new FileTemplateResolver();
-        templateResolver.setPrefix("/path/to/templates/"); // 设置模板文件所在的目录路径
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        templateEngine.setTemplateResolver(templateResolver);
-
-        Context context = new Context();
-        context.setVariable("images", images);
-        context.setVariable("target2", target2);
-        context.setVariable("model", model);
-        // 使用模板引擎生成HTML
-        String html = templateEngine.process("template", context);
-        System.out.println(html);
-        return html;
-    }
-
 
     @Override
     public ProductGetResult get(Long id) {
@@ -168,7 +149,6 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
         }
         log.info("refreshToken授权过期...返回null");
         throw new ComException(ErrorCodeEnum.E_AUTHORIZED_1688);
-
     }
 
     @Override
@@ -176,26 +156,18 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
 
     }
 
-
-
-
-
-
-
     @Override
     public ProductPageResult list(ProductQueryForm form) {
         ProductListGetParam param = new ProductListGetParam();
         param.setPageSize((int) form.getSize());
         param.setPageNo((int) form.getCurrent());
         return get1688Product(param);
-
     }
 
     private ProductPageResult get1688Product(ProductListGetParam param) {
         if (SingletonAccessToken.getAccessToken().getToken() != null) {
             AccessToken accessToken = SingletonAccessToken.getAccessToken();
             ApiExecutor apiExecutor = accessToken.getApiExecutor();
-
             SDKResult<ProductListGetResult> execute = apiExecutor.execute(param, accessToken.getToken().getAccess_token());
             if (StringUtils.isNotBlank(execute.getErrorMessage())) {
                 throw new ComException(ErrorCodeEnum.E_OTHERS, execute.getErrorMessage());
@@ -207,14 +179,12 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
             if (!result.getSuccess()) {
                 throw new ComException(ErrorCodeEnum.E_OTHERS, result.getMessage());
             }
-
             ProductPageResult pageResult = result.getResult().getPageResult();
             return pageResult;
         } else {
             throw new ComException(ErrorCodeEnum.E_AUTHORIZED_1688);
         }
     }
-
 
     @Override
     public void rePost(ProductRePostForm form) {

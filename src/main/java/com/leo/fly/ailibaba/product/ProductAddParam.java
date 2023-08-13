@@ -128,7 +128,7 @@ public class ProductAddParam extends AbstractAPIRequest<ProductAddResult> {
 
     public ProductAddParam() {
         super();
-        oceanApiId = new APIId("com.alibaba.product", "alibaba.product.add", 1);
+        oceanApiId = new APIId("com.alibaba.product", "alibaba.new.product.add", 1);
     }
 
 }
