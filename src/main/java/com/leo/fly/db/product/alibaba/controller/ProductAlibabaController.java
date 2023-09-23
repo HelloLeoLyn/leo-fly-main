@@ -4,6 +4,7 @@ import com.alibaba.product.param.AlibabaProductProductInfo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.leo.fly.ailibaba.product.ProductGetParam;
 import com.leo.fly.ailibaba.product.ProductGetResult;
+import com.leo.fly.ailibaba.product.ProductListGetParam;
 import com.leo.fly.common.entity.vo.JsonResult;
 import com.leo.fly.db.product.alibaba.entity.ProductAlibaba;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaAddForm;
@@ -11,7 +12,6 @@ import com.leo.fly.db.product.alibaba.params.ProductAlibabaQueryForm;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaQueryParam;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaUpdateForm;
 import com.leo.fly.db.product.alibaba.service.ProductAlibabaService;
-import com.leo.fly.db.product.param.ProductQueryForm;
 import com.leo.fly.db.product.param.ProductRePostForm;
 import com.leo.fly.db.product.service.ProductAttributesService;
 import com.leo.fly.db.product.service.ProductService;
@@ -68,8 +68,8 @@ public class ProductAlibabaController {
 	}
 
 	@PostMapping(value = "/list")
-	public JsonResult list1688(@Valid @RequestBody ProductQueryForm queryForm) {
-		Object o = productAlibabaService.list(queryForm);
+	public JsonResult list1688(@Valid @RequestBody ProductListGetParam param) {
+		Object o = productAlibabaService.list(param);
 		return  JsonResult.success(o);
 	}
 

@@ -1,6 +1,5 @@
 package com.leo.fly.db.product.alibaba.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.ocean.rawsdk.ApiExecutor;
 import com.alibaba.ocean.rawsdk.common.SDKResult;
@@ -24,17 +23,12 @@ import com.leo.fly.db.product.alibaba.mapper.ProductAlibabaMapper;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaAddForm;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaQueryParam;
 import com.leo.fly.db.product.alibaba.service.ProductAlibabaService;
-import com.leo.fly.db.product.param.ProductQueryForm;
 import com.leo.fly.db.product.param.ProductRePostForm;
 import com.leo.fly.db.product.service.ProductService;
 import com.leo.fly.db.property.service.PropertyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.FileTemplateResolver;
 
 import java.util.Arrays;
 import java.util.List;
@@ -157,10 +151,7 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
     }
 
     @Override
-    public ProductPageResult list(ProductQueryForm form) {
-        ProductListGetParam param = new ProductListGetParam();
-        param.setPageSize((int) form.getSize());
-        param.setPageNo((int) form.getCurrent());
+    public ProductPageResult list(ProductListGetParam param) {
         return get1688Product(param);
     }
 

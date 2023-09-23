@@ -1,6 +1,7 @@
 package com.leo.fly.db.product.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.leo.fly.baidu.utils.FileUtil;
 import com.leo.fly.common.entity.vo.JsonResult;
 import com.leo.fly.common.util.ObjectUtils;
@@ -43,7 +44,16 @@ public class ProductImageController {
         return "redirect:"+imageService.getMainImageWithProductId(productId, pixel);
     }
 
-
+    @PutMapping(value = "/main")
+    @ResponseBody
+    public JsonResult setMain(@RequestParam Long productId,@RequestParam Long imageId) {
+        productService.updateById(new Product().setId(productId).setMainImage(String.valueOf(imageId)));
+        LambdaUpdateWrapper<Image> updateWrapper = new LambdaUpdateWrapper();
+        updateWrapper.set(Image::getIsMain,Boolean.FALSE).eq(Image::getCode,String.valueOf(productId));
+        imageService.update(updateWrapper);
+        imageService.updateById(new Image().setIsMain(Boolean.TRUE).setId(imageId));
+        return JsonResult.success();
+    }
     @GetMapping(value = "/{id}/{pixel}")
     public String getById(@PathVariable Long id, @PathVariable String pixel) {
         Image image = imageService.getById(id);

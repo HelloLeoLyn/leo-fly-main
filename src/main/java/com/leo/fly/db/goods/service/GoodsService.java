@@ -16,6 +16,4 @@ import com.leo.fly.db.goods.params.GoodsTemplateParams;
  */
 public interface GoodsService extends IService<Goods> {
     Page<Goods> page(Page page, GoodsQueryParam toParam);
-
-    Object templates(GoodsTemplateParams params);
 }

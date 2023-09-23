@@ -3,11 +3,11 @@ package com.leo.fly.db.product.alibaba.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.leo.fly.ailibaba.product.ProductGetResult;
+import com.leo.fly.ailibaba.product.ProductListGetParam;
 import com.leo.fly.ailibaba.product.ProductPageResult;
 import com.leo.fly.db.product.alibaba.entity.ProductAlibaba;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaAddForm;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaQueryParam;
-import com.leo.fly.db.product.param.ProductQueryForm;
 import com.leo.fly.db.product.param.ProductRePostForm;
 
 
@@ -27,7 +27,7 @@ public interface ProductAlibabaService extends IService<ProductAlibaba> {
 
     void rePost(ProductRePostForm form);
 
-    ProductPageResult list(ProductQueryForm form);
+    ProductPageResult list(ProductListGetParam param);
 
     ProductGetResult get(Long id);
 

@@ -47,9 +47,4 @@ public class GoodsController {
 	public JsonResult delete(@PathVariable String id) {
 		return JsonResult.success(goodsService.removeById(id));
 	}
-
-	@PostMapping(value="/templates")
-	public JsonResult templates(@RequestBody GoodsTemplateParams params){
-		return JsonResult.success(goodsService.templates(params));
-	}
 }

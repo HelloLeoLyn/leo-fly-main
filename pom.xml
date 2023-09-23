@@ -203,11 +203,6 @@
             <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>
         <!-- WebSocket -->
-        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
         <dependency>
             <groupId>alibaba-bizutils</groupId>
             <artifactId>alibaba-bizutils</artifactId>
