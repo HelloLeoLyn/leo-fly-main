@@ -49,8 +49,8 @@ public class PythonImageController {
 
     @PostMapping("/goods")
     public JsonResult goods(@RequestBody PythonImageGoodsParams params) {
-        generateGoodsImage.execute(params);
-        return JsonResult.success();
+        JSONObject jsonObject = generateGoodsImage.execute(params);
+        return JsonResult.success(jsonObject);
     }
 
     @PostMapping("/rembg")

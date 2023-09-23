@@ -68,5 +68,6 @@
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf:3.0.15.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-api:4.1.4" level="project" />
     <orderEntry type="library" name="Maven: us.codecraft:webmagic-core:0.7.5" level="project" />
+    <orderEntry type="library" name="Maven: alibaba-bizutils:alibaba-bizutils:1.0" level="project" />
   </component>
 </module>

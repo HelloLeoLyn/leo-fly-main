@@ -4,11 +4,13 @@ import com.alibaba.ocean.rawsdk.client.APIId;
 import com.alibaba.ocean.rawsdk.common.AbstractAPIRequest;
 import com.alibaba.product.param.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class ProductAddParam extends AbstractAPIRequest<ProductAddResult> {
     @NotBlank
     /**

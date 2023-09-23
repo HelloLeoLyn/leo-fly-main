@@ -55,8 +55,12 @@ public class GenerateGoodsImage {
                             image.setType("PE");
                             image.setStatus(1);
                             imageService.save(image);
+                            object.put("imageId",image.getId());
+                        }else{
+                            object.put("imageId",param.getImageId());
                         }
                     }
+
                 }catch (Exception e) {
                     e.printStackTrace();
                     continue;

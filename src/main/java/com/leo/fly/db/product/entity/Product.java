@@ -1,12 +1,10 @@
 package com.leo.fly.db.product.entity;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.leo.fly.web.po.BasePo;
 import lombok.Data;
@@ -122,5 +120,6 @@ public class Product extends BasePo {
     @TableField(value="group_id",typeHandler = FastjsonTypeHandler.class)
     private List<Number> groupId;
 
-    private String tagIds;
+    @TableField(value="tag_ids",typeHandler = FastjsonTypeHandler.class)
+    private List<Number> tagIds;
 }

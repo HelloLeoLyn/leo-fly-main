@@ -7,7 +7,10 @@ import com.leo.fly.common.util.BeanUtils;
 import com.leo.fly.common.util.ObjectUtils;
 import com.leo.fly.db.image.entity.Image;
 import com.leo.fly.db.image.service.ImageService;
-import com.leo.fly.db.product.components.*;
+import com.leo.fly.db.product.components.ProductAllUpdateComponent;
+import com.leo.fly.db.product.components.ProductMergeComponent;
+import com.leo.fly.db.product.components.ProductMoreComponent;
+import com.leo.fly.db.product.components.ProductResetComponent;
 import com.leo.fly.db.product.entity.Product;
 import com.leo.fly.db.product.entity.ProductAttributes;
 import com.leo.fly.db.product.entity.ProductJson;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -97,6 +101,11 @@ public class ProductController {
         return JsonResult.success(productService.updateById(form));
     }
 
+    @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = JsonResult.class))
+    @PutMapping("/batch")
+    public JsonResult updateBatch(@RequestBody Map<String,List<Product>> products) {
+        return JsonResult.success(productService.updateBatchById(products.get("products")));
+    }
     @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = JsonResult.class))
     @PutMapping("/all")
     public JsonResult updateAll(@Valid @RequestBody Product product) {

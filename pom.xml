@@ -209,6 +209,11 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
+            <groupId>alibaba-bizutils</groupId>
+            <artifactId>alibaba-bizutils</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
             <version>3.1.26</version>

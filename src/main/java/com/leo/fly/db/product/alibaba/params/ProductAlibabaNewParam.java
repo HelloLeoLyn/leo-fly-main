@@ -10,4 +10,5 @@ public class ProductAlibabaNewParam extends AbstractAPIRequest<ProductAlibabaNew
     private String scene;
     private Long offerId;
     private JSONObject bizParam;
+    private String dataBody;
 }

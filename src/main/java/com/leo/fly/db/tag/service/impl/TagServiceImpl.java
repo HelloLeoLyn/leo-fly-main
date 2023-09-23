@@ -9,11 +9,7 @@ import com.leo.fly.db.tag.entity.Tag;
 import com.leo.fly.db.tag.mapper.TagMapper;
 import com.leo.fly.db.tag.params.TagQueryParam;
 import com.leo.fly.db.tag.service.TagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagService {
@@ -21,6 +17,7 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, Tag> implements TagSe
     public Page<Tag> page(Page page, TagQueryParam params) {
         LambdaQueryWrapper<Tag> queryWrapper = new LambdaQueryWrapper<>();
 		queryWrapper.eq(ObjectUtils.isNotEmpty(params.getId()),Tag::getId,params.getId());
+		queryWrapper.in(ObjectUtils.isNotEmpty(params.getIdList()),Tag::getId,params.getIdList());
 		queryWrapper.eq(StringUtils.isNotBlank(params.getName()),Tag::getName,params.getName());
 		queryWrapper.eq(StringUtils.isNotBlank(params.getType()),Tag::getType,params.getType());
         return this.page(page, queryWrapper);

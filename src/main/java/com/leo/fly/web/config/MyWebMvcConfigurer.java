@@ -20,7 +20,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
         //将所有/static/** 访问都映射到classpath:/static/ 目录下
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 
-//        registry.addResourceHandler("/video/**").addResourceLocations("file:G:/warning/e-shop/video/");
+        registry.addResourceHandler("/video/**").addResourceLocations("file:"+imageBaseDir);
 
         registry.addResourceHandler("/img/**").addResourceLocations("file:"+imageBaseDir);
         //定义到硬盘
