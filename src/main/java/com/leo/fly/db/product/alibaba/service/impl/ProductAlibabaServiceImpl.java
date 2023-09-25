@@ -15,7 +15,6 @@ import com.leo.fly.common.enums.ErrorCodeEnum;
 import com.leo.fly.common.exception.ComException;
 import com.leo.fly.common.util.ObjectUtils;
 import com.leo.fly.common.util.StringUtils;
-import com.leo.fly.db.goods.entity.Goods;
 import com.leo.fly.db.goods.service.GoodsService;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.db.product.alibaba.entity.ProductAlibaba;
@@ -85,8 +84,7 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
     @Override
     public void add(ProductAlibaba productAlibaba) {
         this.sendTo1688(productAlibaba);
-        Goods goods = goodsService.getById(productAlibaba.getId());
-        goodsService.updateById(goods);
+        this.save(productAlibaba);
     }
 
     private void sendTo1688(ProductAlibaba productAlibaba) {
@@ -148,6 +146,14 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
     @Override
     public void localSave(ProductAlibabaAddForm addForm) {
 
+    }
+
+    @Override
+    public List<ProductAlibaba> getByLocalProductId(Long localProductId) {
+        LambdaQueryWrapper<ProductAlibaba> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ProductAlibaba::getLocalProductId,localProductId);
+        List<ProductAlibaba> list = this.list(queryWrapper);
+        return list;
     }
 
     @Override

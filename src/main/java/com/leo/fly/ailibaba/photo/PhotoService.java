@@ -11,6 +11,6 @@ public interface PhotoService {
 
     PhotoBankPhotoResult photo(PhotoBankParams param);
 
-    List<PhotoBankPhotoResult> sendImagesToAlibaba(List<Image>images, Long albumID);
+    List<Image> sendImagesToAlibaba(List<Image>images, Long albumID);
 }
 

@@ -1,9 +1,6 @@
 package com.leo.fly.db.product.alibaba.controller;
 
-import com.alibaba.product.param.AlibabaProductProductInfo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.leo.fly.ailibaba.product.ProductGetParam;
-import com.leo.fly.ailibaba.product.ProductGetResult;
 import com.leo.fly.ailibaba.product.ProductListGetParam;
 import com.leo.fly.common.entity.vo.JsonResult;
 import com.leo.fly.db.product.alibaba.entity.ProductAlibaba;
@@ -36,10 +33,7 @@ public class ProductAlibabaController {
 		ProductAlibaba productAlibaba = updateForm.toPo(ProductAlibaba.class);
 		return JsonResult.success(productAlibabaService.updateById(productAlibaba));
 	}
-	@GetMapping(value = "/{id}")
-	public JsonResult get(@PathVariable String id) {
-		return JsonResult.success(productAlibabaService.getById(id));
-	}
+
 	@PostMapping(value = "/page")
 	public JsonResult page(@Valid @RequestBody ProductAlibabaQueryForm productAlibabaQueryForm) {
 		Page<ProductAlibaba> page = productAlibabaService.page(productAlibabaQueryForm.getPage(), productAlibabaQueryForm.toParam(ProductAlibabaQueryParam.class));
@@ -66,6 +60,10 @@ public class ProductAlibabaController {
 		productAlibabaService.add(productAlibaba);
 		return JsonResult.success();
 	}
+	@GetMapping(value = "/{id}")
+	public JsonResult get(@PathVariable String id) {
+		return JsonResult.success(productAlibabaService.getById(id));
+	}
 
 	@PostMapping(value = "/list")
 	public JsonResult list1688(@Valid @RequestBody ProductListGetParam param) {
@@ -73,22 +71,9 @@ public class ProductAlibabaController {
 		return  JsonResult.success(o);
 	}
 
-
 	@PostMapping(value = "/rePost")
 	public JsonResult rePost(@RequestBody ProductRePostForm form) {
 		productAlibabaService.rePost(form);
-		return  JsonResult.success();
-	}
-
-	@PostMapping(value = "/sync")
-	public JsonResult sync(@RequestBody ProductGetParam param) {
-		ProductGetResult productGetResult = productAlibabaService.get(param.getProductID());
-		if (productGetResult == null) {
-			return  JsonResult.success();
-		}else{
-			AlibabaProductProductInfo productInfo = productGetResult.getProductInfo();
-			ProductAlibaba productAlibaba = new ProductAlibaba();
-		}
 		return  JsonResult.success();
 	}
 }

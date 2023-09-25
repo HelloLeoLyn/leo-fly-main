@@ -49,7 +49,7 @@ public class PhotoController {
     @PostMapping(value = "/upload/batch")
     @ResponseBody
     public JsonResult uploadBatch(@RequestBody PhotoBankParams photoBankParams) {
-        List<PhotoBankPhotoResult> photoBankPhotoResults = photoService.sendImagesToAlibaba(photoBankParams.getImages(),photoBankParams.getAlbumID());
+        List<Image> photoBankPhotoResults = photoService.sendImagesToAlibaba(photoBankParams.getImages(),photoBankParams.getAlbumID());
         return JsonResult.success(photoBankPhotoResults);
     }
 

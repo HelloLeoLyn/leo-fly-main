@@ -10,6 +10,8 @@ import com.leo.fly.db.product.alibaba.params.ProductAlibabaAddForm;
 import com.leo.fly.db.product.alibaba.params.ProductAlibabaQueryParam;
 import com.leo.fly.db.product.param.ProductRePostForm;
 
+import java.util.List;
+
 
 /**
  * <p>
@@ -32,4 +34,6 @@ public interface ProductAlibabaService extends IService<ProductAlibaba> {
     ProductGetResult get(Long id);
 
     void localSave(ProductAlibabaAddForm addForm);
+
+    List<ProductAlibaba> getByLocalProductId(Long localProductId);
 }

@@ -1,12 +1,10 @@
 package com.leo.fly.ailibaba.photo;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.ocean.rawsdk.ApiExecutor;
 import com.alibaba.ocean.rawsdk.client.APIId;
 import com.alibaba.ocean.rawsdk.common.AbstractAPIRequest;
 import com.alibaba.ocean.rawsdk.common.SDKResult;
 import com.leo.fly.ailibaba.common.AccessToken;
-import com.leo.fly.ailibaba.common.AlibabaConst;
 import com.leo.fly.ailibaba.common.SingletonAccessToken;
 import com.leo.fly.common.enums.ErrorCodeEnum;
 import com.leo.fly.common.exception.ComException;
@@ -14,23 +12,14 @@ import com.leo.fly.common.util.StringUtils;
 import com.leo.fly.db.image.entity.Image;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.db.product.service.ProductService;
-import com.leo.fly.web.util.UserContextHolder;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -59,11 +48,12 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public List<PhotoBankPhotoResult> sendImagesToAlibaba(List<Image>images, Long albumID) {
-        List<PhotoBankPhotoResult> results = new ArrayList<>();
+    public List<Image> sendImagesToAlibaba(List<Image>images, Long albumID) {
+        List<Image> results = new ArrayList<>();
         images.forEach((image) -> {
             image = imageService.getById(image.getId());
             if (StringUtils.isNotBlank(image.getUrl())) {
+                results.add(image);
                 return;
             }
             PhotoBankParams param = new PhotoBankParams();
@@ -87,7 +77,9 @@ public class PhotoServiceImpl implements PhotoService {
                 if (image.getId() != null) {
                     imageService.updateById(image);
                 }
-                results.add(result);
+                results.add(image);
+            }else{
+                results.add(null);
             }
         });
         return results;
