@@ -3,6 +3,7 @@ package com.leo.fly.file.controller;
 import com.leo.fly.common.entity.vo.JsonResult;
 import com.leo.fly.db.image.service.ImageService;
 import com.leo.fly.file.param.FileParam;
+import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -41,4 +43,14 @@ public class FileController {
     }
 
 
+    @SneakyThrows
+    @ResponseBody
+    @GetMapping("/open")
+    public JsonResult open(@RequestParam String path){
+        System.setProperty("java.awt.headless", "false");
+        File file = new File(path);
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(file);
+        return JsonResult.success();
+    }
 }

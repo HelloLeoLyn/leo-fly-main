@@ -41,8 +41,8 @@ public class ProductNewAlibabaController {
         return  JsonResult.success(execute);
     }
 
-    @PostMapping(value="/add/productId")
-    public JsonResult sendToAlibaba(@Valid @RequestBody AlibabaNewProductAddParam params, @PathVariable Long productId) {
+    @PostMapping(value="/add")
+    public JsonResult sendToAlibaba(@Valid @RequestBody AlibabaNewProductAddParam params) {
         if(SingletonAccessToken.getAccessToken()==null){
             throw new ComException(ErrorCodeEnum.E_AUTHORIZED_1688);
         }
@@ -58,8 +58,6 @@ public class ProductNewAlibabaController {
             throw new ComException(ErrorCodeEnum.E_AUTHORIZED_1688);
         }
         AlibabaNewProductAddResult result = execute.getResult();
-        String dataJson = result.getResult().getBizData().getDataJson();
-//        productAlibabaService.get();
-        return  JsonResult.success(execute);
+        return  JsonResult.success(result.getResult());
     }
 }
