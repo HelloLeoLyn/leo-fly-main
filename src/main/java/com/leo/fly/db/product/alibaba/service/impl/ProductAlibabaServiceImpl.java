@@ -145,7 +145,7 @@ public class ProductAlibabaServiceImpl extends ServiceImpl<ProductAlibabaMapper,
 
     @Override
     public void localSave(ProductAlibabaAddForm addForm) {
-
+        this.save(addForm.toPo(ProductAlibaba.class));
     }
 
     @Override

@@ -52,7 +52,7 @@ public class PhotoServiceImpl implements PhotoService {
         List<Image> results = new ArrayList<>();
         images.forEach((image) -> {
             image = imageService.getById(image.getId());
-            if (StringUtils.isNotBlank(image.getUrl())) {
+            if (image.getStatus()==2) {
                 results.add(image);
                 return;
             }
